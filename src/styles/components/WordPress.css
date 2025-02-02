@@ -1,0 +1,83 @@
+.wordpress-section {
+  background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+  color: white;
+}
+
+.pricing-card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-5px);
+}
+
+.pricing-card .card-header {
+  background: #0073aa;
+  color: white;
+  padding: 1.5rem;
+  border: none;
+}
+
+.price-container {
+  text-align: center;
+  padding: 2rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.price-cop {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #0073aa;
+  margin: 0;
+}
+
+.price-usd {
+  color: #666;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.unlimited-support {
+  display: inline-block;
+  background: #28a745;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.features-list {
+  padding: 2rem 0;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.check-icon {
+  color: #28a745;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.cta-button {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  background: #0073aa;
+  border: none;
+  transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #005c8a;
+}

@@ -1,23 +1,44 @@
-import React, { useState } from 'react';
-import { Container, Navbar, Nav, Row, Col, Card, Button, Form, Badge, Modal } from 'react-bootstrap';
-import { Code, Server, Tools, Github, Linkedin, FileText } from 'react-bootstrap-icons';
-import backgroundImage from './img/banner.png';
+import React, { useState } from "react";
+import {
+  Container,
+  Navbar,
+  Nav,
+  Row,
+  Col,
+  Card,
+  Button,
+  Form,
+  Badge,
+  Modal,
+} from "react-bootstrap";
+import {
+  Code,
+  Server,
+  Tools,
+  Github,
+  Linkedin,
+  FileText,
+  Envelope,
+  Wordpress,
+} from "react-bootstrap-icons";
+import WordPress from "../src/WordPress/WordPress";
+import backgroundImage from "./img/banner.png";
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
 
   const skills = [
-    { name: 'Node.js', icon: <Code /> },
-    { name: '.NET Core', icon: <Server /> },
-    { name: 'SQL Server', icon: <Tools /> },
-    { name: 'Docker', icon: <Tools /> }
+    { name: "Node.js", icon: <Code /> },
+    { name: ".NET Core", icon: <Server /> },
+    { name: "SQL Server", icon: <Tools /> },
+    { name: "Docker", icon: <Tools /> },
   ];
 
   const projects = [
@@ -27,70 +48,89 @@ const Portfolio = () => {
       technologies: ["Node.js", "Express", "MongoDB"],
       link: "#",
       // Add more detailed project information
-      fullDescription: "Desarrollé una API completa para la gestión de inventarios utilizando Node.js y Express. El sistema permite realizar operaciones CRUD, seguimiento de productos, y generación de informes detallados.",
+      fullDescription:
+        "Desarrollé una API completa para la gestión de inventarios utilizando Node.js y Express. El sistema permite realizar operaciones CRUD, seguimiento de productos, y generación de informes detallados.",
       keyFeatures: [
         "Gestión completa de inventario",
         "Autenticación de usuarios",
         "Generación de reportes",
-        "Integración con base de datos MongoDB"
+        "Integración con base de datos MongoDB",
       ],
-      githubLink: "#"
+      githubLink: "#",
     },
     {
       name: "Microservicios .NET",
       description: "Arquitectura de microservicios",
       technologies: [".NET Core", "SQL Server"],
       link: "#",
-      fullDescription: "Implementé una arquitectura de microservicios escalable utilizando .NET Core, con comunicación entre servicios y base de datos SQL Server.",
+      fullDescription:
+        "Implementé una arquitectura de microservicios escalable utilizando .NET Core, con comunicación entre servicios y base de datos SQL Server.",
       keyFeatures: [
         "Diseño de microservicios",
         "Comunicación entre servicios",
         "Despliegue en contenedores Docker",
-        "Patrón de arquitectura limpia"
+        "Patrón de arquitectura limpia",
       ],
-      githubLink: "#"
+      githubLink: "#",
     },
     {
       name: "Bots Automatizados",
       description: "Desarrollador de bots automatizados con api de META",
       technologies: ["Meta for Developers", "Bailys"],
       link: "#",
-      fullDescription: "Creé bots de automatización para plataformas de mensajería utilizando las APIs de Meta y la librería Bailys para interacción avanzada.",
+      fullDescription:
+        "Creé bots de automatización para plataformas de mensajería utilizando las APIs de Meta y la librería Bailys para interacción avanzada.",
       keyFeatures: [
         "Integración con API de Meta",
         "Automatización de mensajes",
         "Respuestas inteligentes",
-        "Manejo de múltiples canales"
+        "Manejo de múltiples canales",
       ],
-      githubLink: "#"
+      githubLink: "#",
     },
     {
       name: "Api de Mensajeria",
       description: "Servicios SSH con GraphQl Y Rest",
       technologies: ["Whatsapp", "SMS"],
       link: "#",
-      fullDescription: "Desarrollé una API de mensajería multifuncional que soporta comunicación via Whatsapp y SMS, utilizando protocolos GraphQL y REST.",
+      fullDescription:
+        "Desarrollé una API de mensajería multifuncional que soporta comunicación via Whatsapp y SMS, utilizando protocolos GraphQL y REST.",
       keyFeatures: [
         "Soporte para Whatsapp y SMS",
         "Endpoints GraphQL y REST",
         "Seguridad de comunicaciones",
-        "Escalabilidad del servicio"
+        "Escalabilidad del servicio",
       ],
-      githubLink: "#"
-    }
-  ]
+      githubLink: "#",
+    },
+  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const openProjectModal = (project) => {
     setSelectedProject(project);
     setShowModal(true);
+  };
+
+  const handleEmailClick = () => {
+    const subject = encodeURIComponent("Contacto desde Portafolio");
+    const mailtoLink = `mailto:janderalexisc@gmail.com?subject=${subject}`;
+    window.location.href = mailtoLink;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const subject = encodeURIComponent("Contacto desde Portafolio");
+    const body = encodeURIComponent(
+      `Nombre: ${formData.name}\nEmail: ${formData.email}\nMensaje: ${formData.message}`
+    );
+    window.location.href = `mailto:janderalexisc@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -105,6 +145,7 @@ const Portfolio = () => {
               <Nav.Link href="#skills">Habilidades</Nav.Link>
               <Nav.Link href="#projects">Proyectos</Nav.Link>
               <Nav.Link href="#contact">Contacto</Nav.Link>
+              <Nav.Link href="#wordpress">WordPress</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -116,18 +157,24 @@ const Portfolio = () => {
         className="text-center py-5 vh-100 d-flex align-items-center justify-content-center position-relative"
         style={{
           backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundBlendMode: 'overlay',
-          backgroundColor: 'rgba(0,0,0,0.6)',
-          fontWeight: 'bold'
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundBlendMode: "overlay",
+          backgroundColor: "rgba(0,0,0,0.6)",
+          fontWeight: "bold",
         }}
       >
-        <div className="text-white">  
-          <h1 className="display-3" style={{fontWeight:'bold'}}>Jander Carrillo</h1>
+        <div className="text-white">
+          <h1 className="display-3" style={{ fontWeight: "bold" }}>
+            Jander Carrillo
+          </h1>
           <h1 className="display-3">Desarrollador Backend</h1>
-          <p className="lead">Ingeniero en Sistemas Especialista en Node.js y .NET</p>
-          <Button variant="primary" href="#projects" size="lg">Ver Proyectos</Button>
+          <p className="lead">
+            Ingeniero en Sistemas Especialista en Node.js y .NET
+          </p>
+          <Button variant="primary" href="#projects" size="lg">
+            Ver Proyectos
+          </Button>
         </div>
       </Container>
 
@@ -135,8 +182,14 @@ const Portfolio = () => {
         <Row className="align-items-center justify-content-center">
           <Col md={8} className="text-center">
             <h2>Sobre Mí</h2>
-              <p className='lead'>Ingeniero en Sistemas en Mención en Programación Diplomatizado En Gestion del Talento Humano</p>
-            <p className="lead">Desarrollador backend con pasión por crear soluciones escalables y eficientes utilizando tecnologías modernas.</p>
+            <p className="lead">
+              Ingeniero en Sistemas en Mención en Programación Diplomatizado En
+              Gestion del Talento Humano
+            </p>
+            <p className="lead">
+              Desarrollador backend con pasión por crear soluciones escalables y
+              eficientes utilizando tecnologías modernas.
+            </p>
           </Col>
         </Row>
       </Container>
@@ -168,11 +221,13 @@ const Portfolio = () => {
                   <Card.Text>{project.description}</Card.Text>
                   <div className="mb-3">
                     {project.technologies.map((tech, i) => (
-                      <Badge key={i} bg="secondary" className="me-2">{tech}</Badge>
+                      <Badge key={i} bg="secondary" className="me-2">
+                        {tech}
+                      </Badge>
                     ))}
                   </div>
-                  <Button 
-                    variant="outline-primary" 
+                  <Button
+                    variant="outline-primary"
                     onClick={() => openProjectModal(project)}
                   >
                     Ver Detalles
@@ -183,12 +238,8 @@ const Portfolio = () => {
           ))}
         </Row>
       </Container>
-       {/* Project Details Modal */}
-       <Modal 
-        show={showModal} 
-        onHide={() => setShowModal(false)} 
-        size="lg"
-      >
+      {/* Project Details Modal */}
+      <Modal show={showModal} onHide={() => setShowModal(false)} size="lg">
         {selectedProject && (
           <>
             <Modal.Header closeButton>
@@ -199,7 +250,9 @@ const Portfolio = () => {
               <h5>Tecnologías</h5>
               <div className="mb-3">
                 {selectedProject.technologies.map((tech, i) => (
-                  <Badge key={i} bg="secondary" className="me-2">{tech}</Badge>
+                  <Badge key={i} bg="secondary" className="me-2">
+                    {tech}
+                  </Badge>
                 ))}
               </div>
               <h5>Características Principales</h5>
@@ -210,29 +263,37 @@ const Portfolio = () => {
               </ul>
             </Modal.Body>
             <Modal.Footer>
-              <Button 
-                variant="secondary" 
-                href={selectedProject.githubLink} 
+              <Button
+                variant="secondary"
+                href={selectedProject.githubLink}
                 target="_blank"
               >
                 Ver en GitHub
               </Button>
-              <Button 
-                variant="primary" 
-                onClick={() => setShowModal(false)}
-              >
+              <Button variant="primary" onClick={() => setShowModal(false)}>
                 Cerrar
               </Button>
             </Modal.Footer>
           </>
         )}
       </Modal>
-
+      <WordPress />
       <Container id="contact" className="py-5 bg-dark text-white">
         <h2 className="text-center mb-4">Contacto</h2>
         <Row className="justify-content-center">
           <Col md={6}>
-            <Form>
+            <div className="text-center mb-4">
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={handleEmailClick}
+                className="mb-4"
+              >
+                <Envelope className="me-2" />
+                Contactar por Email Directamente
+              </Button>
+            </div>
+            <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3">
                 <Form.Control
                   type="text"
@@ -240,6 +301,7 @@ const Portfolio = () => {
                   placeholder="Nombre"
                   value={formData.name}
                   onChange={handleChange}
+                  required
                 />
               </Form.Group>
               <Form.Group className="mb-3">
@@ -249,6 +311,7 @@ const Portfolio = () => {
                   placeholder="Correo Electrónico"
                   value={formData.email}
                   onChange={handleChange}
+                  required
                 />
               </Form.Group>
               <Form.Group className="mb-3">
@@ -259,6 +322,7 @@ const Portfolio = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows={4}
+                  required
                 />
               </Form.Group>
               <div className="text-center">
@@ -274,11 +338,19 @@ const Portfolio = () => {
       <footer className="bg-secondary text-white text-center py-3">
         <Container>
           <div className="mb-2">
-            <a href="#" className="text-white me-3"><Github /></a>
-            <a href="#" className="text-white me-3"><Linkedin /></a>
-            <a href="#" className="text-white"><FileText /></a>
+            <a href="#" className="text-white me-3">
+              <Github />
+            </a>
+            <a href="#" className="text-white me-3">
+              <Linkedin />
+            </a>
+            <a href="#" className="text-white">
+              <FileText />
+            </a>
           </div>
-          <p className="mb-0">© 2025 ing Jander Carrillo. Todos los derechos reservados.</p>
+          <p className="mb-0">
+            © 2025 ing Jander Carrillo. Todos los derechos reservados.
+          </p>
         </Container>
       </footer>
     </div>
